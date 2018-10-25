@@ -1,0 +1,120 @@
+<html>
+<head>
+
+	<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+	<script src="js/lib/angular.min.js"></script>
+	<script src="js/lib/angular-animate.min.js"></script>
+	<script src="js/lib/angular-route.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/lib/utils.js"></script>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="css/styles.css" rel="stylesheet" type="text/css">
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+	<script>
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '< Ant',
+            nextText: 'Sig >',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+            dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+        $(function () {
+            $("#fecha").datepicker();
+        });
+	</script>
+<title>FormApp AngularJS</title>
+<script type="text/javascript">
+
+        </script>
+<style>
+
+</style>
+<head>
+<body ng-app="UserManagement" ng-controller="UserController">
+<div class="panel panel-default">
+	<div class="panel-heading"><span class="lead">Formulario de usuarios </span></div>
+	<div class="formcontainer">
+	<form ng-submit="submitUser()">
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label class="col-md-2 control-label">Nombre</label>
+				<div class="col-md-7">
+					<input type="text" ng-model="userForm.firstName" ng-required="true">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label class="col-md-2 control-label">Apellido</label>
+				<div class="col-md-7">
+					<input type="text" ng-model="userForm.lastName" ng-required="true"/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label class="col-md-2 control-label">Email</label>
+				<div class="col-md-7">
+					<input type="email" ng-model="userForm.email" ng-required="true"/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label class="col-md-2 control-label" >Fecha de nacimiento</label>
+				<div class="col-md-7">
+					<input type="text" id="fecha" value="" ng-model="userForm.birthDate" />
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-actions floatLeft">
+				<input type="submit" class="btn btn-primary btn-sm" value="Enviar datos" ng-disabled="userForm.$invalid"/>
+			</div>
+		</div>
+	</form>
+	</div>
+</div>
+
+	<div class="panel panel-default">
+		<!-- Default panel contents -->
+		<div class="panel-heading"><span class="lead">Lista de Usuarios ordenados por {{orderByField}} </span></div>
+		<div class="tablecontainer">
+	<table id="usersData" class="table table-hover">
+		<tr>
+			<th href="#" ng-click="userOrder('firstName')">Nombre de usuario</th>
+			<th href="#" ng-click="userOrder('lastName')">Apellido de usuario</th>
+			<th href="#" ng-click="userOrder('mail')">Email</th>
+			<th href="#" ng-click="userOrder('birthDate')">Fecha de nacimiento</th>
+		</tr>
+		<tr ng-repeat="user in users|orderBy:orderByField:reverseSort">
+		<!--<tr ng-repeat="user in dataUsuarios.usuario|orderBy:orderByField:reverseSort">-->
+			<td>{{ user.firstName }}</td>
+			<td>{{ user.lastName }}</td>
+			<td>{{ user.email }}</td>
+			<td>{{ user.birthDate }}</td>
+		</tr>
+	</table>
+		</div>
+	</div>
+
+	<div>
+		<a href="#" onclick="exportTableToCSV('dataUsers.csv')" class="blue-button">Descargar datos en CSV</a><br><br>
+	</div>
+</body>
+</html>

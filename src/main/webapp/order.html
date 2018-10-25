@@ -1,0 +1,134 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order........</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    <script src="js/app.js"></script>
+
+</head>
+<body>
+<section ng-app="app" ng-controller="MainCtrl">
+    <span class="label">Ordered By: {{orderByField}}, Reverse Sort: {{reverseSort}}</span><br><br>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>
+                <a href="#" ng-click="orderByField='firstName'; reverseSort = !reverseSort">
+                    First Name <span ng-show="orderByField == 'firstName'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="orderByField='lastName'; reverseSort = !reverseSort">
+                    Last Name <span ng-show="orderByField == 'lastName'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="orderByField='age'; reverseSort = !reverseSort">
+                    Age <span ng-show="orderByField == 'age'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+                </a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="emp in data.employees|orderBy:orderByField:reverseSort">
+            <td>{{emp.firstName}}</td>
+            <td>{{emp.lastName}}</td>
+            <td>{{emp.age}}</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de registro</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,100,700,900" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/lib/angular/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+<div class="page">
+    <section class="card register" ng-app="myApp"
+             ng-controller="RegistrationController">
+        <form name="myform"
+              ng-submit="register()"
+              novalidate>
+
+            <div class="textintro">
+                <h1>Formulario de registro</h1>
+                <p>Por favor rellene el siguiente formulario</p>
+                <p ng-show="message">{{ message }}</p>
+            </div>
+
+            <fieldset>
+                <input type="text" name="firstname"
+                       placeholder="Nombre"
+                       ng-model="user.firstname"
+                       ng-required="true">
+                <p class="error validationerror" ng-show="myform.firstname.$invalid && myform.firstname.$touched">
+                    Campo requerido. Debe introducir su nombre.</p>
+
+                <input type="text" name="lastname"
+                       placeholder="Primer apellido"
+                       ng-model="user.lastname"
+                       ng-required="true">
+                <p class="error validationerror" ng-show="myform.lastname.$invalid && myform.lastname.$touched">
+                    Campo requerido. Debe introducir su primer apellido.</p>
+
+
+                <input type="email" name="email"
+                       placeholder="Email"
+                       ng-model="user.email">
+                <p class="error validationerror" ng-show="myform.email.$invalid && myform.email.$touched">
+                    Campo requerido. Debe introducir un email válido.</p>
+
+                <script>
+                    angular.module('dateInputExample', [])
+                        .controller('DateController', ['$scope', function($scope) {
+                            $scope.example = {
+                                value: new Date(1, 10, 2018)
+                            };
+                        }]);
+                </script>
+                <label for="birthDate">Indique fecha de nacimiento:</label>
+                <input type="date" id="birthDate" name="input" ng-model="example.value"
+                       placeholder="dd-MM-yyyy" min="01-01-1900" max="31-12-2018" required />
+                <div role="alert">
+     <span class="error" ng-show="myform.input.$error.required">
+         Campo requerido</span>
+                    <span class="error" ng-show="myform.input.$error.date">
+         La fecha introducida no es una fecha valida</span>
+                </div>
+                <p class="error validationerror" ng-show="myform.email.$invalid && myform.email.$touched">
+                    <tt>value = {{example.value | date: "dd-MM-yyyy"}}</tt><br/>
+                    <tt>myform.input.$valid = {{myform.input.$valid}}</tt><br/>
+                    <tt>myform.input.$error = {{myform.input.$error}}</tt><br/>
+                    <tt>myform.$valid = {{myform.$valid}}</tt><br/>
+                    <tt>myform.$error.required = {{!!myform.$error.required}}</tt><br/>
+
+
+
+                    <input type="password" name="password"
+                           placeholder="Password"
+                           ng-model="user.password"
+                           ng-minlength="6">
+                <p class="error validationerror" ng-show="myform.password.$invalid && myform.password.$touched">
+                    Password must be at least 6 characters</p>
+
+            </fieldset>
+
+            <button type="submit" class="btn">Enviar</button>
+        </form>
+    </section>
+</div>
+</body>
+</html>

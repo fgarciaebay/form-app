@@ -1,0 +1,127 @@
+# Aplicacion formulario en AngulaJS inserción en base de datos MySQL
+
+Aplicación que a través de un formulario en AngularJS graba datos en una base de datos MySQL
+
+## Getting Started
+
+Clonar el proyecto con Git de igual manera que si extuviese alojado en Github
+
+### Prerrequisitos
+
+<ul>
+<li>Hacer un formulario de registro de usuarios (nombre, apellidos, email, fecha nacimiento. </li>
+<li>Para el front usando Bootstrap y Angular 1.6 o superior.</li>
+<li>Insertar los registros en en una base de datos MySQL.</li>
+<li>Hacer una página que los liste  y permita la ordenación por todos los campos.</li>
+<li>Para el back hacer una aplicación java desplegable en Tomcat 8 que reciba los datos y los almacene en base de datos.</li>
+<li>Exportar el listado de usuarios a un fichero CSV</li>
+
+</ul>
+
+
+### Instalación
+
+El repositorio es un proyecto Web creado con Eclipse sobre Tomcat 8.
+
+Se requieren una serie de pasos previos:
+<ul>
+<li>Crear una base de datos en MySQL de nombre "UserData".</li>
+<li>Crear una tabla en la base de datos según el siguiente script.</li>
+
+```
+CREATE TABLE `User` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`firstName` varchar(100) NOT NULL,
+`lastName` varchar(100) NOT NULL,
+`email` varchar(255) NOT NULL,
+`birthDate` varchar(12) NOT NULL,
+PRIMARY KEY (`id`)
+)
+```
+<li>Adaptar el fichero properties por si pudiera diferir las configuraciones por defecto.</li>
+<li>Insertar los registros en en una base de datos MySQL.</li>
+<li>Hacer una página que los liste  y permita la ordenación por todos los campos.</li>
+<li>Para el back hacer una aplicación java desplegable en Tomcat 8 que reciba los datos y los almacene en base de datos.</li>
+<li>Exportar el listado de usuarios a un fichero CSV</li>
+
+</ul>
+ y modificaciones por si se tiene diferntes configuraciones recogidas en el archivo application.properties:
+
+```
+logging.level=DEBUG
+# Database
+db.driver: com.mysql.jdbc.Driver
+db.url: jdbc:mysql://localhost:3306/UserData
+db.username: root
+db.password: 
+ 
+# Hibernate
+hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+hibernate.show_sql: true
+hibernate.hbm2ddl.auto: create
+entitymanager.packagesToScan: com
+ 
+spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true
+```
+
+And repeat
+
+```
+until finished
+```
+
+End with an example of getting some data out of the system or using it for a little demo
+
+## Running the tests
+
+Explain how to run the automated tests for this system
+
+### Break down into end to end tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
